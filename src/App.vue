@@ -33,9 +33,11 @@ export default {
   height: 100%;
   display: flex;
   section{
-    width: 70%;
+    width: 80%;
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
   }
 }
 

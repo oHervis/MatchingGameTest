@@ -1,16 +1,17 @@
 <template>
-  <div id="counter">
-    <h3>{{counter}}</h3>
+  <div id="shuffle">
+    <button>Reordenar</button>
   </div>
 </template>
 
 <script>
 
+
 export default {
-    name: 'counter-game',
+    name: 'shuffle-game',
     data () {
     return {
-      counter:0
+      contador:10
     }
   }
 }

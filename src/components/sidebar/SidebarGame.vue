@@ -34,8 +34,8 @@ export default {
 <style lang="scss">
 $borderBottom : 1px solid rgba(255,255,255,.1);
 aside {
-    width: 30%;
-    background: #333;
+    width: 20%;
+    background: #3F51B5;
     height: 100%;
     display: flex;
     flex-wrap: wrap;

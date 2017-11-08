@@ -1,13 +1,18 @@
 <template>
   <header>
-  	<nav>{{titulo}}</nav>
-    <counter-game></counter-game>
+  	<nav>
+      <h1>{{titulo}}</h1>
+      <counter-game></counter-game>
+      <shuffle-game></shuffle-game>
+    </nav>
   </header>
 </template>
 
 <script>
 
 import CounterGame from '../content/CounterGame'
+import ShuffleGame from '../content/ShuffleGame'
+
 export default {
   name: 'header-game',
   data () {
@@ -16,7 +21,8 @@ export default {
     }
   },
   components:{
-    CounterGame
+    CounterGame,
+    ShuffleGame
   }
 }
 </script>
@@ -29,6 +35,10 @@ header{
   justify-content: center;
   nav{
     width: 90%;
+    h1{
+      font-size: 22px;
+      font-family: arial;
+    }
   }
 }
 </style>

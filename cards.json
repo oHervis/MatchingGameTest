@@ -1,53 +1,108 @@
+
+
+
 [{
   "id": "1",
-  "imgFront": "https://image.flaticon.com/icons/png/512/193/193996.png",
-  "imgBack": "https://image.flaticon.com/icons/png/512/193/193995.png",
+  "imgFront": "src/assets/icons/back.svg",
+  "imgBack": "src/assets/icons/css.svg",
   "target": "1"
 }, {
   "id": "2",
-  "imgFront": "https://image.flaticon.com/icons/png/512/193/193996.png",
-  "imgBack": "https://image.flaticon.com/icons/png/512/193/193995.png",
+  "imgFront": "src/assets/icons/back.svg",
+  "imgBack": "src/assets/icons/html.svg",
   "target": "2"
 }, {
   "id": "3",
-  "imgFront": "https://image.flaticon.com/icons/png/512/193/193996.png",
-  "imgBack": "https://image.flaticon.com/icons/png/512/193/193995.png",
+  "imgFront": "src/assets/icons/back.svg",
+  "imgBack": "src/assets/icons/js.svg",
   "target": "3"
 }, {
   "id": "4",
-  "imgFront": "https://image.flaticon.com/icons/png/512/193/193996.png",
-  "imgBack": "https://image.flaticon.com/icons/png/512/193/193995.png",
+  "imgFront": "src/assets/icons/back.svg",
+  "imgBack": "src/assets/icons/php.svg",
   "target": "4"
 }, {
   "id": "5",
-  "imgFront": "https://image.flaticon.com/icons/png/512/193/193996.png",
-  "imgBack": "https://image.flaticon.com/icons/png/512/193/193995.png",
+  "imgFront": "src/assets/icons/back.svg",
+  "imgBack": "src/assets/icons/sql.svg",
   "target": "5"
 },
 {
   "id": "6",
-  "imgFront": "https://image.flaticon.com/icons/png/512/193/193996.png",
-  "imgBack": "https://image.flaticon.com/icons/png/512/193/193995.png",
-  "target": "1"
+  "imgFront": "src/assets/icons/back.svg",
+  "imgBack": "src/assets/icons/svg.svg",
+  "target": "6"
 }, {
   "id": "7",
-  "imgFront": "https://image.flaticon.com/icons/png/512/193/193996.png",
-  "imgBack": "https://image.flaticon.com/icons/png/512/193/193995.png",
-  "target": "2"
+  "imgFront": "src/assets/icons/back.svg",
+  "imgBack": "src/assets/icons/txt.svg",
+  "target": "7"
 }, {
   "id": "8",
-  "imgFront": "https://image.flaticon.com/icons/png/512/193/193996.png",
-  "imgBack": "https://image.flaticon.com/icons/png/512/193/193995.png",
-  "target": "3"
+  "imgFront": "src/assets/icons/back.svg",
+  "imgBack": "src/assets/icons/xls.svg",
+  "target": "8"
 }, {
   "id": "9",
-  "imgFront": "https://image.flaticon.com/icons/png/512/193/193996.png",
-  "imgBack": "https://image.flaticon.com/icons/png/512/193/193995.png",
-  "target": "4"
+  "imgFront": "src/assets/icons/back.svg",
+  "imgBack": "src/assets/icons/zip.svg",
+  "target": "9"
 }, {
   "id": "10",
-  "imgFront": "https://image.flaticon.com/icons/png/512/193/193996.png",
-  "imgBack": "https://image.flaticon.com/icons/png/512/193/193995.png",
+  "imgFront": "src/assets/icons/back.svg",
+  "imgBack": "src/assets/icons/ps.svg",
+  "target": "10"
+},
+{
+  "id": "11",
+  "imgFront": "src/assets/icons/back.svg",
+  "imgBack": "src/assets/icons/css.svg",
+  "target": "1"
+}, {
+  "id": "12",
+  "imgFront": "src/assets/icons/back.svg",
+  "imgBack": "src/assets/icons/html.svg",
+  "target": "2"
+}, {
+  "id": "13",
+  "imgFront": "src/assets/icons/back.svg",
+  "imgBack": "src/assets/icons/js.svg",
+  "target": "3"
+}, {
+  "id": "14",
+  "imgFront": "src/assets/icons/back.svg",
+  "imgBack": "src/assets/icons/php.svg",
+  "target": "4"
+}, {
+  "id": "15",
+  "imgFront": "src/assets/icons/back.svg",
+  "imgBack": "src/assets/icons/sql.svg",
   "target": "5"
+}, {
+  "id": "16",
+  "imgFront": "src/assets/icons/back.svg",
+  "imgBack": "src/assets/icons/svg.svg",
+  "target": "6"
+}, {
+  "id": "17",
+  "imgFront": "src/assets/icons/back.svg",
+  "imgBack": "src/assets/icons/txt.svg",
+  "target": "7"
+}, {
+  "id": "18",
+  "imgFront": "src/assets/icons/back.svg",
+  "imgBack": "src/assets/icons/xls.svg",
+  "target": "8"
+}, {
+  "id": "19",
+  "imgFront": "src/assets/icons/back.svg",
+  "imgBack": "src/assets/icons/zip.svg",
+  "target": "9"
+}, {
+  "id": "20",
+  "imgFront": "src/assets/icons/back.svg",
+  "imgBack": "src/assets/icons/ps.svg",
+  "target": "10"
 }]
+
 

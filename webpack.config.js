@@ -1,5 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
+const json = require('./cards.json');
+
 
 module.exports = {
   entry: './src/main.js',
@@ -9,6 +11,12 @@ module.exports = {
     filename: 'build.js'
   },
   module: {
+    loaders: [
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
+      }
+    ],
     rules: [
       {
         test: /\.css$/,
@@ -50,7 +58,8 @@ module.exports = {
               'vue-style-loader',
               'css-loader',
               'sass-loader?indentedSyntax'
-            ]
+            ],
+            
           }
           // other vue-loader options go here
         }

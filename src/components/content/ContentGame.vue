@@ -1,6 +1,5 @@
 <template>
     <div id="content">
-
         <div id="gameCard" v-for="card in allCards" :key="card.id">
             <card-game  
                 :imgFront="card.imgFront" 
@@ -27,6 +26,15 @@
         })
     })
 
+    const shuffleCards = (arrCards)=> {
+        for (let i = arrCards.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arrCards[i], arrCards[j]] = [arrCards[j], arrCards[i]];
+        }
+        allCards = arrCards
+        console.log(allCards);
+    }
+    
   
 export default {
 
@@ -39,6 +47,11 @@ export default {
   components:{
     CardGame
 
+  },
+  methods:{
+      shuffle:(arrCards)=>{
+          shuffleCards(arrCards);
+      }
   }
  
 }
@@ -52,6 +65,7 @@ export default {
     justify-content: center;
     #gameCard{
         width: 150px;
+        height: 100px;
         margin: 10px;
     }
 }
