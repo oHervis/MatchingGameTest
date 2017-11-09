@@ -1,12 +1,12 @@
 <template>
   <aside>
-    {{user}}
+
     <h2>Ranking Game</h2>
   	<div class="user-rank">
       <ul>
         <li
-          v-for="item in user" :key="item.id">
-          {{ item.name }}
+          v-for="item in UserList" :key="item.id">
+          {{ item._name }}
         </li>
       </ul>
     </div>
@@ -20,7 +20,7 @@ export default {
   name: 'header-game',
   data () {
     return {
-    
+      UserList : [this.user]
     }
   },
   props:{

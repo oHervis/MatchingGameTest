@@ -1,5 +1,6 @@
 export default class Player {
     constructor(name, rounds ){
+       
         this._name = name;
         this._rounds = rounds;
 
