@@ -1,12 +1,12 @@
 <template>
   <aside>
+    {{user}}
     <h2>Ranking Game</h2>
   	<div class="user-rank">
       <ul>
         <li
-          v-for="user in users" :key="user.id"
-        >
-          {{ user.name }}
+          v-for="item in user" :key="item.id">
+          {{ item.name }}
         </li>
       </ul>
     </div>
@@ -20,14 +20,15 @@ export default {
   name: 'header-game',
   data () {
     return {
-      users: [
-            {name:'Alexandro'},
-            {name:'João'},
-            {name:'Lucio'},
-            {name:'Matheus'},
-          ]
+    
     }
+  },
+  props:{
+    user: Object,
+    render:Object,
+    rank:Object
   }
+ 
 }
 </script>
 
@@ -39,6 +40,7 @@ aside {
     height: 100%;
     display: flex;
     flex-wrap: wrap;
+    position: fixed;
     justify-content: center;
     h2{
       color: #fff;

@@ -1,9 +1,17 @@
 <template>
   <div id="app">
-    <sidebar-game></sidebar-game>
+    <info-user-game :rank="ranking" 
+                    :render="renderGame" 
+                    :user="playerData">
+    </info-user-game>
+    <sidebar-game
+            :rank="ranking" 
+            :render="renderGame" 
+            :user="playerData">
+    </sidebar-game>
     <section>
-      <header-game></header-game>
-      <content-game></content-game>
+      <header-game :render="renderGame"></header-game>
+      <content-game :render="renderGame" :user="playerData"></content-game>
     </section>
   </div>
 </template>
@@ -12,28 +20,39 @@
 import HeaderGame from './components/header/HeaderGame'
 import SidebarGame from './components/sidebar/SidebarGame'
 import ContentGame from './components/content/ContentGame'
+import InfoUserGame from './components/content/InfoUserGame'
+import Player from './controllers/classes/Players'
+import Render from './controllers/classes/Render'
+import Ranking from './controllers/classes/Ranking'
 export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      playerData: new Player('',0),
+      renderGame: new Render(false),
+      ranking: new Ranking([])
+
     }
   },
   components:{
     HeaderGame,
     SidebarGame,
-    ContentGame
+    ContentGame,
+    InfoUserGame
   }
 }
 </script>
 
 <style lang="scss">
 #app {
-  width: 100%;
-  height: 100%;
-  display: flex;
+     width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
   section{
     width: 80%;
+    margin-left: 20%;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;

@@ -1,18 +1,12 @@
 <template>
-  <header>
+  <header v-show="renderGame">
   	<nav>
       <h1>{{titulo}}</h1>
-      <counter-game></counter-game>
-      <shuffle-game></shuffle-game>
     </nav>
   </header>
 </template>
 
 <script>
-
-import CounterGame from '../content/CounterGame'
-import ShuffleGame from '../content/ShuffleGame'
-
 export default {
   name: 'header-game',
   data () {
@@ -20,9 +14,8 @@ export default {
       titulo: 'Jogo da Memoria '
     }
   },
-  components:{
-    CounterGame,
-    ShuffleGame
+  props:{
+    renderGame:Object
   }
 }
 </script>
@@ -33,6 +26,8 @@ header{
   text-align: center;
   display: flex;
   justify-content: center;
+  border-bottom: 1px solid rgba(0,0,0,.2);
+  box-shadow: -1px 3px 7px 0px rgba(0,0,0,.1);
   nav{
     width: 90%;
     h1{

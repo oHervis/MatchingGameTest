@@ -1,20 +1,24 @@
 <template>
     <div id="content">
-        <div id="gameCard" v-for="card in allCards" :key="card.id">
-            <card-game  
-                :imgFront="card.imgFront" 
-                :imgBack="card.imgBack" 
-                :target="card.target"
-                :idElement="card.id">
-            </card-game>            
+        <info-game :rounds="counter"></info-game>
+        <div class="game">
+            <div class="gameCard" v-for="card in allCards" :key="card.id">
+                <card-game
+                    v-on:click.native="calcCounter" 
+                    :imgFront="card.imgFront" 
+                    :imgBack="card.imgBack" 
+                    :target="card.target"
+                    :idElement="card.id">
+                </card-game>                        
+            </div>
         </div>
     </div>
 </template>
 
 <script>
     import CardGame from './CardGame'
+    import InfoGame from './InfoGame'
     let allCards = [];
-
 
     let cards = fetch('./cards.json');
 
@@ -32,28 +36,48 @@
             [arrCards[i], arrCards[j]] = [arrCards[j], arrCards[i]];
         }
         allCards = arrCards
-        console.log(allCards);
     }
     
-  
+
 export default {
 
   name: 'content-game',
   data () {
     return {
-        allCards
+        allCards,
+        counter:0,
+        counterClick:0
     }
   },
   components:{
-    CardGame
+    CardGame,
+    InfoGame
 
   },
+  props:{
+      user:Object,
+      renderGame: Object
+  },
   methods:{
-      shuffle:(arrCards)=>{
+      shuffle(arrCards){
           shuffleCards(arrCards);
+      },
+      calcCounter(){
+          this.counterClick += 1
+          if (this.counterClick == 2) {
+                this.counter += 1;
+                this.counterClick = 0;
+          }          
+      },
+      setRounds(rounds){
+          this.user.PlayerRounds = this.counter;
       }
-  }
- 
+  },
+  created: function(){
+      this.counterClick;
+      this.counter;
+    }
+   
 }
 </script>
 
@@ -63,10 +87,17 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    #gameCard{
-        width: 150px;
-        height: 100px;
-        margin: 10px;
+    .game{
+        width: 65%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    
+        .gameCard{
+            width: 100px;
+            height: 110px;
+            margin: 10px;
+        }
     }
 }
 </style>

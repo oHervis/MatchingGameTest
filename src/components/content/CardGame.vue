@@ -68,7 +68,7 @@
 
 
     export default {
-            name: 'counter-game',
+            name: 'card-game',
             data() {
                 return {
                 cardSelected,
@@ -103,15 +103,13 @@
     }
     .flip-container {
         perspective: 1000px;
-        width: 60px;
+        width: 70%;
         height: auto;
         .flipper {
             transition: 0.6s;
             transform-style: preserve-3d;
             position: relative;
-            .front,.back {
-                width: 60px;
-                height: auto;
+            .front,.back {                
                 backface-visibility: hidden;
                 position: absolute;
                 top: 0;
