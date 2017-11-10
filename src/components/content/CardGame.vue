@@ -1,5 +1,5 @@
 <template>
-  <div  :id="idElement" class="targetDisable " @click="showCard(target, idElement)">
+  <div  :id="idElement" class="targetDisable" @click="showCard(target, idElement)">
         <div class="flip-container">
             <div class="flipper">
                 <div class="front">
@@ -92,12 +92,13 @@ export default {
 
                 },
                 checkEndGame(){
-                    let element = document.querySelectorAll('.targetDisable')
                     
+                    let element = document.querySelectorAll('.targetDisable')                 
                     
-                    element =  Object.values(element);                   
-
+                    element = Array.prototype.slice.call(element)                   
+                    
                     let check = element.every(item=>{
+                                                
                         return item.classList.contains('disable')
                     })
                      if (check) {

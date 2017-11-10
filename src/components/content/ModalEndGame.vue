@@ -1,5 +1,6 @@
 <template>
     <div id="endModal" v-if="statusGame.getStatusGame.status == 'END'">
+        
         <div class="contentModal">        
             <h1>Fim de jogo {{rank._infoPlayer._name}}</h1>
             <p>Seu Placar</p>

@@ -73,7 +73,6 @@ export default {
           const j = Math.floor(Math.random() * (i + 1));
           [arrCards[i], arrCards[j]] = [arrCards[j], arrCards[i]];
         }
-        console.log(arrCards);
         
       }
     },
