@@ -1,13 +1,14 @@
 <template>
-    <div id="userModal" v-show="this.render.getStatusGame.status == 'INIT'" >
-        <div class="contentModal" >
-        
-            <h1>Olá, seja bem vindo ao jogo da Memória</h1>
-            <p>Para Começar, digite o seu nome :)</p>
+    <div id="endModal" v-if="statusGame.getStatusGame.status == 'END'">
+        <div class="contentModal">        
+            <h1>Fim de jogo {{rank._infoPlayer._name}}</h1>
+            <p>Seu Placar</p>
+            <div>
+                <p>Rodadas  <span>{{rank._infoPlayer._rounds}}</span></p>
+                <p>Acertos  <span>{{rank._infoPlayer._hits}}</span></p>
+            </div>
             <div class="actions">
-                <input v-bind:class="{ 'errorInput': showError}" type="text" placeholder="Ex: João da silva" v-model="nameUser">
-                <p class="error" v-show="showError">Preencha seu nome Corretamente</p>
-                <button @click="getInfoUser">Começar o Jogo</button>
+                <button @click="newGame">Novo Jogo</button>
             </div>
         </div> 
     </div>
@@ -21,38 +22,33 @@ export default {
   name: 'info-user',
   data () {
     return {
-        nameUser:'',
-        showError: false,
+        statusGame:this.status,        
     }
   },
   props:{
       user:Object,
-      render:Object,
-      rank:Object
+      rank:Object,
+      status:Object
   },
   methods:{
-      getInfoUser(){
-        if(this.nameUser.length > 3){
-            this.user.setPlayerName = this.nameUser
-            this.render.setStatusGame = 'PROGRESS'
-            this.rank.setUserRanking = this.user
-            this.showError = false
-            this.showModal = false
-            
-        }else{
-            this.showError = true
-        }
+      newGame(){
+          this.status.setStatusGame = 'INIT'
+          this.statusGame.setDataPlayer = this.rank
+          let cards = document.querySelectorAll('.disable');
+          cards.forEach(item=>{
+              item.classList.remove('disable')
+          })
       }
   }
-  
-  
  
+
 }
+  
 </script>
 
 <style lang="scss">
     $displayDefault: flex;
-    #userModal{
+    #endModal{
         width: 100%;
         height: 100%;
         position: absolute;
@@ -76,6 +72,9 @@ export default {
                 h1,p{
                     width: 100%;
                     
+                }
+                div{
+                    width: 100%;
                 }
                 .actions{
                     width: 70%;

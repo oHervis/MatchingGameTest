@@ -1,5 +1,5 @@
 <template>
-  <div  :id="idElement" @click="showCard(target, idElement)">
+  <div  :id="idElement" class="targetDisable " @click="showCard(target, idElement)">
         <div class="flip-container">
             <div class="flipper">
                 <div class="front">
@@ -42,10 +42,7 @@
 
     }
     
-
-
-
-    export default {
+export default {
             name: 'card-game',
             data() {
                 return {
@@ -59,14 +56,15 @@
                 target: String,
                 idElement: String,
                 hits:Object,
-                status:String
+                statusGame:Object
 
             },
             methods: {
                 showCard(data, nameElement) {                
                     let element = document.getElementById(`${nameElement}`)
                     this.checkCard(data, element)
-                                        
+                    this.checkEndGame();
+                                            
                 },
                 checkCard(data, el){
 
@@ -79,8 +77,7 @@
                             cardSelected.push(data)
 
                         } else if (cardSelected[0] == data && arrElements[0] != el) {
-                            this.checkEndGame();
-                            
+                                                       
                             
                             this.hits.setPlayerHits = numberHits += 1; 
                             flipCardDisable(arrElements);
@@ -95,18 +92,26 @@
 
                 },
                 checkEndGame(){
-                    let element = document.querySelectorAll('.gameCard')
-                    element.forEach(item=>{
-                        if(item.classList.contains('disable')){
-                            this.status.setStatusGame = 'END'
-                        }
-                    })
+                    let element = document.querySelectorAll('.targetDisable')
                     
+                    
+                    element =  Object.values(element);                   
+
+                    let check = element.every(item=>{
+                        return item.classList.contains('disable')
+                    })
+                     if (check) {
+                            this.statusGame.setStatusGame = 'END'
+                            
+                     }
+                    
+                 }
                 }
+                
 
             }
-    }
-
+          
+    
     </script>
 
     <style lang="scss">

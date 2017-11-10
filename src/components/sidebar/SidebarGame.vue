@@ -2,10 +2,10 @@
   <aside>
     <h2>Ranking Game</h2>
   	<div class="user-rank">
-      <ul v-if="renderSidebar._condition" >
-        <li
-          v-for="item in UserList" :key="item.id">
-          <p>{{ item._name }}</p> |  <p> {{item._hits}}/{{item._rounds}}</p>
+      <ul v-show="this.render.getStatusGame.status == 'PROGRESS'">
+        <li v-if="item._name != null"
+          v-for="item in UserList" :key="item.id" >
+          <p>{{ item._name }}</p> | <p> {{item._hits}}/{{item._rounds}}</p>
         </li>
       </ul>
     </div>
@@ -19,13 +19,22 @@ export default {
   name: 'header-game',
   data () {
     return {
-      UserList : [this.user],
-      renderSidebar: this.render}
+      UserList : [this.user, this.rank],
+      renderSidebar: this.render.getStatusGame.status
+    }
   },
   props:{
     user: Object,
     render:Object,
     rank:Object
+  },
+  methods:{
+    addList(){
+      console.log(this.rank);
+    }
+  },
+  created:function(){
+    this.addList()
   }
  
 }

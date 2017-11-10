@@ -1,13 +1,8 @@
-$font-stack : Helvetica,
-sans-serif;
-$primary-color: #333;
-
-body {
-  font: 100% $font-stack;
-  background-color: $primary-color;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap; 
+body,html {
+ margin: 0px;
+ padding: 0px;
+ height: 100%;
+ width: 100%;
+ font-family: arial;
 
 }

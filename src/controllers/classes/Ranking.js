@@ -8,7 +8,9 @@ export default class Ranking {
     
     }
     set setUserRanking(data){
+        
         this._infoPlayer = data
+        
     }
     get getUserRanking(){
         return{

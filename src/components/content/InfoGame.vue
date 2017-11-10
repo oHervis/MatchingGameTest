@@ -4,15 +4,12 @@
             <p>Contador de Rodadas</p>
             <h2>{{rounds}}</h2>
         </div>
-        <div class="actions">
-            <button>Reordenar as Cartas</button>
-        </div>
     </div> 
 </template>
 
 <script>
     
-  
+import shuffleCards from '../../controllers/metodos/shuffleCards'
 export default {
 
   name: 'info-game',
@@ -22,7 +19,7 @@ export default {
     }
   },
   props:{
-      rounds:Number
+      rounds:Number,
   }
   
  
@@ -38,8 +35,16 @@ export default {
     align-items: center;
     color: #fff;
     .counter{
-        padding: 10px;
+         padding: 10px;
+        width: 30%;
         text-align: center;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    h2{
+        margin: 0px;
+        padding: 5px;
     }
     .actions{
         margin: 10px;

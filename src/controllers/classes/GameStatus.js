@@ -1,4 +1,4 @@
-import SendStorage from './SendStorage'
+import storage from '../metodos/storage'
 
 export default class Game {
     constructor(status, playerData){
@@ -10,18 +10,20 @@ export default class Game {
         }
     }
 
-    endGame(data){
-        let data = new SendStorage(data)
-        console.log(data)
+    gameOver(data){
+        
+        storage(data.getUserRanking.ranking)           
+        
     }
 
-    set setStatusGame(statusGame, playerData){
-        this._status = statusGame;
-        this._playerData = playerData
+    set setStatusGame(statusGame){
+        
+        this._status = statusGame;     
        
-        if (this._status == 'END') {
-            endGame(this._playerD/ata)
-        }
+    }
+
+    set setDataPlayer(playerData){
+        this.gameOver(playerData)
     }
     get getStatusGame(){
         return{

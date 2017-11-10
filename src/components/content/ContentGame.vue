@@ -5,6 +5,7 @@
             <div class="gameCard" v-for="card in allCards" :key="card.id">
                 <card-game
                     :hits="user"
+                    :statusGame="status"
                     v-on:click.native="calcCounter" 
                     :imgFront="card.imgFront" 
                     :imgBack="card.imgBack" 
@@ -31,13 +32,7 @@
         })
     })
 
-    const shuffleCards = (arrCards)=> {
-        for (let i = arrCards.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [arrCards[i], arrCards[j]] = [arrCards[j], arrCards[i]];
-        }
-        allCards = arrCards
-    }
+  
     
 
 export default {
@@ -57,29 +52,37 @@ export default {
   },
   props:{
       user:Object,
-      renderGame: Object
+      renderGame: Object,
+      status:Object
   },
-  methods:{
-      shuffle(arrCards){
-          shuffleCards(arrCards);
+  methods: {
+      calcCounter() {
+        this.counterClick += 1
+        console.log()
+        if (this.counterClick == 2) {
+          this.counter += 1;
+          this.counterClick = 0;
+          this.setRounds()
+        }
       },
-      calcCounter(){
-          this.counterClick += 1
-          console.log()
-          if (this.counterClick == 2) {
-                this.counter += 1;
-                this.counterClick = 0;
-                this.setRounds()
-          }          
+      setRounds() {
+        this.user.setPlayerRounds = this.counter;
       },
-      setRounds(){
-          this.user.setPlayerRounds = this.counter;
+      shuffleCards(arrCards) {
+        for (let i = arrCards.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arrCards[i], arrCards[j]] = [arrCards[j], arrCards[i]];
+        }
+        console.log(arrCards);
+        
       }
-  },
-  created: function(){
+    },
+    created: function () {
+      this.shuffleCards(this.allCards)
       this.counterClick;
       this.counter;
     }
+
    
 }
 </script>
@@ -98,9 +101,14 @@ export default {
         justify-content: center;
     
         .gameCard{
+            cursor: pointer;
             width: 100px;
             height: 110px;
             margin: 10px;
+            -webkit-transition: 0.4s ease all;
+            -moz-transition: 0.4s ease all;
+            transition: 0.4s ease all;
+           
         }
     }
 }
