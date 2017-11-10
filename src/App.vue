@@ -1,17 +1,23 @@
 <template>
   <div id="app">
-    <info-user-game :rank="ranking" 
-                    :render="renderGame" 
-                    :user="playerData">
+    <info-user-game 
+              :rank="ranking" 
+              :render="renderGame" 
+              :user="playerData">
     </info-user-game>
     <sidebar-game
-            :rank="ranking" 
-            :render="renderGame" 
-            :user="playerData">
+              :rank="ranking" 
+              :render="renderGame" 
+              :user="playerData">
     </sidebar-game>
     <section>
-      <header-game :render="renderGame"></header-game>
-      <content-game :render="renderGame" :user="playerData"></content-game>
+      <header-game 
+              :render="renderGame">
+      </header-game>
+      <content-game
+              :status="gameStatus"
+              :render="renderGame" 
+              :user="playerData"></content-game>
     </section>
   </div>
 </template>
@@ -24,13 +30,17 @@ import InfoUserGame from './components/content/InfoUserGame'
 import Player from './controllers/classes/Players'
 import Render from './controllers/classes/Render'
 import Ranking from './controllers/classes/Ranking'
+import GameStatus from './controllers/classes/GameStatus'
+import SendStorage from './controllers/classes/SendStorage'
 export default {
   name: 'app',
   data () {
     return {
-      playerData: new Player('',0),
+      playerData: new Player('',0,0),
       renderGame: new Render(false),
-      ranking: new Ranking([])
+      ranking: new Ranking([]),
+      gameStatus: new GameStatus('INIT'),
+      storage: new SendStorage({})
 
     }
   },

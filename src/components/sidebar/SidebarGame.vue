@@ -1,12 +1,11 @@
 <template>
   <aside>
-
     <h2>Ranking Game</h2>
   	<div class="user-rank">
-      <ul>
+      <ul v-if="renderSidebar._condition" >
         <li
           v-for="item in UserList" :key="item.id">
-          {{ item._name }}
+          <p>{{ item._name }}</p> |  <p> {{item._hits}}/{{item._rounds}}</p>
         </li>
       </ul>
     </div>
@@ -20,8 +19,8 @@ export default {
   name: 'header-game',
   data () {
     return {
-      UserList : [this.user]
-    }
+      UserList : [this.user],
+      renderSidebar: this.render}
   },
   props:{
     user: Object,
@@ -36,7 +35,7 @@ export default {
 $borderBottom : 1px solid rgba(255,255,255,.1);
 aside {
     width: 20%;
-    background: #3F51B5;
+    background: #2c373c;
     height: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -52,9 +51,16 @@ aside {
         list-style-type: none;
         li{
           padding: 5px;
-          width: 60%;
+          width: 80%;
           font-size: 18px;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: space-between;
           border-bottom: $borderBottom;
+          p{
+            width: auto;
+          }
         }
       }
     }

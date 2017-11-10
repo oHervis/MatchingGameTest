@@ -4,6 +4,7 @@
         <div class="game">
             <div class="gameCard" v-for="card in allCards" :key="card.id">
                 <card-game
+                    :hits="user"
                     v-on:click.native="calcCounter" 
                     :imgFront="card.imgFront" 
                     :imgBack="card.imgBack" 
@@ -64,13 +65,15 @@ export default {
       },
       calcCounter(){
           this.counterClick += 1
+          console.log()
           if (this.counterClick == 2) {
                 this.counter += 1;
                 this.counterClick = 0;
+                this.setRounds()
           }          
       },
-      setRounds(rounds){
-          this.user.PlayerRounds = this.counter;
+      setRounds(){
+          this.user.setPlayerRounds = this.counter;
       }
   },
   created: function(){
@@ -85,6 +88,7 @@ export default {
 #content {
     width: 100%;
     display: flex;
+    background: #333;
     flex-wrap: wrap;
     justify-content: center;
     .game{

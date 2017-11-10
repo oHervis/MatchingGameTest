@@ -3,8 +3,11 @@ export default class Ranking {
         this._infoPlayer = userData
     }
 
+    checkRank(getUserRanking){
+        console.log(getUserRanking)
+    
+    }
     set setUserRanking(data){
-        console.log(data);
         this._infoPlayer = data
     }
     get getUserRanking(){

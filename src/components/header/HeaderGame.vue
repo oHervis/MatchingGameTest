@@ -1,5 +1,5 @@
 <template>
-  <header v-show="renderGame">
+  <header v-show="render">
   	<nav>
       <h1>{{titulo}}</h1>
     </nav>
@@ -15,7 +15,7 @@ export default {
     }
   },
   props:{
-    renderGame:Object
+    render:Object
   }
 }
 </script>
@@ -23,6 +23,8 @@ export default {
 <style lang="scss">
 header{
   width: 100%;
+  background: #000;
+  color: #fff;
   text-align: center;
   display: flex;
   justify-content: center;

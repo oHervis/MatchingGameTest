@@ -36,6 +36,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: #fff;
     .counter{
         padding: 10px;
         text-align: center;

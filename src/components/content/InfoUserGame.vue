@@ -70,10 +70,12 @@ export default {
                 flex-wrap: wrap;
                 margin-top: 100px;
                 text-align: center;
-                background: #fff;
+                background: #171717;
+                color:#fff;
                 box-shadow: 0px 4px 7px rgba(0,0,0,.2);
                 h1,p{
                     width: 100%;
+                    
                 }
                 .actions{
                     width: 70%;
@@ -83,8 +85,10 @@ export default {
                     justify-content: center;
                     input{                        
                         border: none;
+                        color: #fff;
                         width: 100%;
-                        border-bottom: 1px solid rgba(0,0,0,.3);
+                        background: transparent;
+                        border-bottom: 1px solid rgba(255,255,255,.3);
                         margin: 50px;
                         font-size: 50px;
                         &:focus{

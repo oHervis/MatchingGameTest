@@ -17,6 +17,7 @@
 
     let cardSelected = []
     let arrElements = []
+    let numberHits = 0;
     const flipCardShow = card => {
 
     let element = card.querySelector('.flipper')
@@ -40,30 +41,7 @@
 
 
     }
-    const checkCard = (data, el) => {
-
-      arrElements.push(el)
-
-      flipCardShow(el);
-
-      if (cardSelected.length < 1) {
-
-        cardSelected.push(data)
-
-      } else if (cardSelected[0] == data && arrElements[0] != el) {
-
-        flipCardDisable(arrElements);
-        arrElements = [];
-        cardSelected = []
-
-      } else {
-
-        flipCardReset(arrElements);
-        arrElements = [];
-        cardSelected = []
-      }
-
-    }
+    
 
 
 
@@ -72,22 +50,60 @@
             data() {
                 return {
                 cardSelected,
+                
                 }
             },
             props: {
                 imgBack: String,
                 imgFront: String,
                 target: String,
-                idElement: String
+                idElement: String,
+                hits:Object,
+                status:String
 
             },
             methods: {
-                showCard: (data, nameElement) => {
-                
-                let element = document.getElementById(`${nameElement}`)
-                checkCard(data, element)
+                showCard(data, nameElement) {                
+                    let element = document.getElementById(`${nameElement}`)
+                    this.checkCard(data, element)
+                                        
+                },
+                checkCard(data, el){
 
+                        arrElements.push(el)
+
+                        flipCardShow(el);
+
+                        if (cardSelected.length < 1) {
+
+                            cardSelected.push(data)
+
+                        } else if (cardSelected[0] == data && arrElements[0] != el) {
+                            this.checkEndGame();
+                            
+                            
+                            this.hits.setPlayerHits = numberHits += 1; 
+                            flipCardDisable(arrElements);
+                            arrElements = [];
+                            cardSelected = []
+
+                        } else {
+                            flipCardReset(arrElements);
+                            arrElements = [];
+                            cardSelected = []
+                        }
+
+                },
+                checkEndGame(){
+                    let element = document.querySelectorAll('.gameCard')
+                    element.forEach(item=>{
+                        if(item.classList.contains('disable')){
+                            this.status.setStatusGame = 'END'
+                        }
+                    })
+                    
                 }
+
             }
     }
 
