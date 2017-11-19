@@ -1,12 +1,12 @@
 <template>
-    <div id="endModal" v-if="statusGame.getStatusGame.status == 'END'">
+    <div id="endModal" v-show="Status == 'END'">
         
         <div class="contentModal">        
-            <h1>Fim de jogo {{rank._infoPlayer._name}}</h1>
+            <h1>Fim de jogo {{Info.name}}</h1>
             <p>Seu Placar</p>
             <div>
-                <p>Rodadas  <span>{{rank._infoPlayer._rounds}}</span></p>
-                <p>Acertos  <span>{{rank._infoPlayer._hits}}</span></p>
+                <p>Rodadas  <span>{{Info.rounds}}</span></p>
+                <p>Acertos  <span>{{Info.wins}}</span></p>
             </div>
             <div class="actions">
                 <button @click="newGame">Novo Jogo</button>
@@ -17,29 +17,23 @@
 
 <script>
     
-import Player from '../../controllers/classes/Players'
+
 export default {
 
-  name: 'info-user',
+  name: 'modal-end-game',
   data () {
     return {
         statusGame:this.status,        
     }
   },
   props:{
-      user:Object,
-      rank:Object,
-      status:Object
-  },
+      Status:String,
+      Info:Object
+      },
   methods:{
-      newGame(){
-          this.status.setStatusGame = 'INIT'
-          this.statusGame.setDataPlayer = this.rank
-          let cards = document.querySelectorAll('.disable');
-          cards.forEach(item=>{
-              item.classList.remove('disable')
-          })
-      }
+         newGame(){
+             this.$emit('initGame')
+          }
   }
  
 

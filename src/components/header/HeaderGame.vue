@@ -1,12 +1,14 @@
 <template>
-  <header v-show="render">
+  <header>
   	<nav>
       <h1>{{titulo}}</h1>
+      <counter-game :User="User" :Wins="Wins" :Rounds="Rounds"></counter-game>
     </nav>
   </header>
 </template>
 
 <script>
+import CounterGame from './CounterGame'
 export default {
   name: 'header-game',
   data () {
@@ -15,7 +17,12 @@ export default {
     }
   },
   props:{
-    render:Object
+    User:Object,
+    Wins:Number,
+    Rounds:Number
+  },
+  components:{
+    CounterGame
   }
 }
 </script>

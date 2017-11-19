@@ -1,47 +1,51 @@
 <template>
-    <div id="userModal" v-show="this.render.getStatusGame.status == 'INIT'" >
-        <div class="contentModal" >
-        
+    <div id="userModal" v-show="Status == 'INIT'" >
+        <div class="contentModal" >        
             <h1>Olá, seja bem vindo ao jogo da Memória</h1>
             <p>Para Começar, digite o seu nome :)</p>
             <div class="actions">
-                <input v-bind:class="{ 'errorInput': showError}" type="text" placeholder="Ex: João da silva" v-model="nameUser">
+                <input  v-bind:class="{ 'errorInput': showError}" 
+                        type="text" 
+                        placeholder="Ex: João da silva" 
+                        v-model="name"
+                        @keyup="getKey($event)">
                 <p class="error" v-show="showError">Preencha seu nome Corretamente</p>
-                <button @click="getInfoUser">Começar o Jogo</button>
+                <button @click="getUserName">Começar o Jogo</button>
             </div>
         </div> 
     </div>
 </template>
 
 <script>
-    
-import Player from '../../controllers/classes/Players'
+import Player from '../../controllers/classes/Player'
 export default {
 
-  name: 'info-user',
+  name: 'modal-info-player',
   data () {
     return {
-        nameUser:'',
+        name:'',
         showError: false,
     }
   },
   props:{
-      user:Object,
-      render:Object,
-      rank:Object
+    Status:String,
+    User:Object
   },
   methods:{
-      getInfoUser(){
-        if(this.nameUser.length > 3){
-            this.user.setPlayerName = this.nameUser
-            this.render.setStatusGame = 'PROGRESS'
-            this.rank.setUserRanking = this.user
-            this.showError = false
-            this.showModal = false
-            
-        }else{
-            this.showError = true
-        }
+      getUserName(){
+          if (this.name != '') {
+                
+                this.User.setName = this.name
+                this.$emit('progressGame')
+                this.name = ''   
+          } else{
+              this.showError =  true
+          }
+      },
+      getKey(e){
+          if(e.keyCode == 13){
+              this.getUserName()
+          }
       }
   }
   
@@ -55,7 +59,7 @@ export default {
     #userModal{
         width: 100%;
         height: 100%;
-        position: absolute;
+        position: fixed;
         z-index: 100;
         background: rgba(0,0,0,.3);
         display: $displayDefault;

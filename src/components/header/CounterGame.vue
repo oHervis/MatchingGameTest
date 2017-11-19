@@ -1,15 +1,16 @@
 <template>
-    <div class="info">
+    <div class="info">        
         <div class="counter">
-            <p>Contador de Rodadas</p>
-            <h2>{{rounds}}</h2>
+            <p> Jogador: <span> {{User.getName}} </span> </p>
+            <p> Wins: <span> {{Wins}} </span> </p>
+            <p> Rounds: <span> {{Rounds}} </span> </p>
         </div>
     </div> 
 </template>
 
 <script>
     
-import shuffleCards from '../../controllers/metodos/shuffleCards'
+
 export default {
 
   name: 'info-game',
@@ -19,7 +20,9 @@ export default {
     }
   },
   props:{
-      rounds:Number,
+      Rounds:Number,
+      Wins:Number,
+      User:Object
   }
   
  
@@ -31,20 +34,19 @@ export default {
      width: 90%;
     flex-wrap: wrap;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     color: #fff;
     .counter{
          padding: 10px;
-        width: 30%;
+        width: 100%;
         text-align: center;
         display: flex;
         justify-content: flex-start;
         align-items: center;
     }
-    h2{
-        margin: 0px;
-        padding: 5px;
+    p{
+        margin: 10px;
     }
     .actions{
         margin: 10px;

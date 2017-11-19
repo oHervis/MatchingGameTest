@@ -1,98 +1,162 @@
 <template>
     <div id="content">
-        <info-game :rounds="counter"></info-game>
+        
+        <header-game 
+                :User="User"
+                :Wins="wins"
+                :Rounds="rounds"
+        ></header-game>
+       
         <div class="game">
-            <div class="gameCard" v-for="card in allCards" :key="card.id">
-                <card-game
-                    :hits="user"
-                    :statusGame="status"
-                    v-on:click.native="calcCounter" 
-                    :imgFront="card.imgFront" 
-                    :imgBack="card.imgBack" 
-                    :target="card.target"
-                    :idElement="card.id">
-                </card-game>                        
+            <div class="gameCard" v-for="card in Cards" :key="card.id">                   
+                    <card-game @click.native="checkCards(card.id, card.target)"
+                            @counterRounds="counterRounds"
+                            @calcWins="calcWins"
+                            @endGame="endGame"
+                            @reset="reset"
+                            :Id="card.id"
+                            :ImgBack="card.imgBack"
+                            :ImgFront="card.imgFront"
+                            :Target="card.target"
+                            >
+                    </card-game>             
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import CardGame from './CardGame'
-    import InfoGame from './InfoGame'
-    let allCards = [];
+import HeaderGame from '../header/HeaderGame'
+import CardGame from './CardGame'
+import {flipCardResetEndGame,flipCardShow,flipCardReset,flipCardDisable} from '../../controllers/methods/flipCard'
+import matchCard from '../../controllers/methods/match'
+import checkCardDisabled from '../../controllers/methods/checkCardDisabled'
 
-    let cards = fetch('./cards.json');
 
-    cards.then((result)=>{
-        result.json().then((cards)=>{
-          for(let item in cards){
-              allCards.push(cards[item])
-          }              
-        })
-    })
 
-  
-    
+let primeiraCarta = undefined;
+let cartasSelecionada = []
+let cartasDesablitadas = [];
 
 export default {
 
   name: 'content-game',
   data () {
     return {
-        allCards,
-        counter:0,
-        counterClick:0
+        rounds:0,
+        wins:0,
+        counter:0
     }
   },
   components:{
+    HeaderGame,
     CardGame,
-    InfoGame
-
   },
   props:{
-      user:Object,
-      renderGame: Object,
-      status:Object
+      Cards:Array,
+      Status:String,
+      User:Object
   },
   methods: {
-      calcCounter() {
-        this.counterClick += 1
-        console.log()
-        if (this.counterClick == 2) {
-          this.counter += 1;
-          this.counterClick = 0;
-          this.setRounds()
-        }
+      counterRounds() {          
+          this.rounds +=1
       },
-      setRounds() {
-        this.user.setPlayerRounds = this.counter;
+      calcWins(){
+          this.wins += 1;
       },
-      shuffleCards(arrCards) {
-        for (let i = arrCards.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [arrCards[i], arrCards[j]] = [arrCards[j], arrCards[i]];
+      endGame(){
+         this.$emit('endGame', this.rounds, this.wins)
+         this.$emit('getUser')
+      },
+      reset(){
+          this.rounds = 0;
+          this.wins = 0;
+          this.counter = 0;
+          primeiraCarta = undefined;
+          cartasSelecionada = []
+          cartasDesablitadas = [];
+          flipCardResetEndGame()
+          
+      },
+      checkCards(idCarta, target) {
+
+        if (checkCardDisabled(target, cartasDesablitadas)){
+                console.log('essa carta ja foi desabilitada :/');
+                                               
+
+        } else{
+                
+                if (!primeiraCarta) {
+                        console.log('Opa, não tinha nenhuma carta selecionada, agora tem :)');
+                        flipCardShow(idCarta)
+                        primeiraCarta = idCarta
+                        cartasSelecionada.push(target)
+                                                   
+
+                } else if(primeiraCarta == idCarta){
+                    
+                    console.log('opa, ja tem uma carta carta cartas Selecionada');
+                    
+                    console.log('mas voce clicou na mesma duas vezes .-.');
+                    
+                    primeiraCarta = undefined;
+                    
+                    cartasSelecionada = [];
+                    
+                } else if (primeiraCarta != idCarta){
+                    
+                    flipCardShow(idCarta)
+                    
+                    console.log('as cartas são diferentes, insira no array de cartas e compare \o/ ');
+                    
+                    cartasSelecionada.push(target)
+                    
+                    console.log('aqui esta o seu array das cartas dessa rodada ->', cartasSelecionada);
+                    
+                    if (matchCard(cartasSelecionada)) {
+                            this.calcWins();
+                            this.counterRounds()
+                            console.log('opa, voce acertou! :)');
+                            cartasDesablitadas.push(target)
+                            console.log('aqui esta seu array de cartas desabilitadas ->', cartasDesablitadas);
+                            flipCardDisable([primeiraCarta, idCarta]);
+                            cartasSelecionada = [];
+                            primeiraCarta = undefined
+                            if (cartasDesablitadas.length == 10) {
+                                    this.endGame()
+                                    this.reset()
+                            }
+                    
+                    } else{
+                            console.log('vish, voce errou :/');
+                            this.counterRounds()
+                            flipCardReset([primeiraCarta, idCarta])
+                            cartasSelecionada = [];
+                            primeiraCarta = undefined
+                        }
+                }
         }
-        
-      }
+     },
+      
     },
-    created: function () {
-      this.shuffleCards(this.allCards)
-      this.counterClick;
-      this.counter;
-    }
+    
 
    
 }
+
+
 </script>
 
 <style lang="scss">
 #content {
-    width: 100%;
+    position: fixed;
+    width: 80%;
+    margin-left: 20%;
     display: flex;
     background: #333;
     flex-wrap: wrap;
     justify-content: center;
+    height: 100%;
     .game{
         width: 65%;
         display: flex;

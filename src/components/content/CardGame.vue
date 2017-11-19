@@ -1,96 +1,35 @@
 <template>
-  <div  :id="idElement" class="targetDisable" @click="showCard(target, idElement)">
+  <div  :id="Id" class="targetDisable">
         <div class="flip-container">
             <div class="flipper">
                 <div class="front">
-                    <img :src="imgFront" alt="teste"/>
+                    <img :src="ImgFront" alt="teste"/>
                 </div>
                 <div class="back">
-                    <img :src="imgBack" alt="teste"/>
+                    <img :src="ImgBack" alt="teste"/>
                 </div>
             </div>
         </div>
   </div>
 </template>
 
-<script>
+<script>    
+    export default {
 
-    let cardSelected = []
-    let arrElements = []
-    let numberHits = 0;
-    const flipCardShow = card => {
-
-    let element = card.querySelector('.flipper')
-    element.classList.add('rotate')
-    }
-    const flipCardReset = arrCard => {
-    setTimeout(function () {
-        arrCard.forEach((card) => {
-        let element = card.querySelector('.flipper')
-        element.classList.remove('rotate');
-        })
-    }, 500);
-
-    }
-    const flipCardDisable = arrCard => {
-
-    arrCard.forEach(elemento => {
-        elemento.classList.add('disable');
-    })
-
-
-
-    }
-    
-export default {
             name: 'card-game',
             data() {
                 return {
-                cardSelected,
-                
+                                
                 }
             },
             props: {
-                imgBack: String,
-                imgFront: String,
-                target: String,
-                idElement: String,
-                hits:Object,
-                statusGame:Object
+                Id: String,
+                ImgFront: String,
+                ImgBack: String,
+                Target: String,              
 
             },
             methods: {
-                showCard(data, nameElement) {                
-                    let element = document.getElementById(`${nameElement}`)
-                    this.checkCard(data, element)
-                    this.checkEndGame();
-                                            
-                },
-                checkCard(data, el){
-
-                        arrElements.push(el)
-
-                        flipCardShow(el);
-
-                        if (cardSelected.length < 1) {
-
-                            cardSelected.push(data)
-
-                        } else if (cardSelected[0] == data && arrElements[0] != el) {
-                                                       
-                            
-                            this.hits.setPlayerHits = numberHits += 1; 
-                            flipCardDisable(arrElements);
-                            arrElements = [];
-                            cardSelected = []
-
-                        } else {
-                            flipCardReset(arrElements);
-                            arrElements = [];
-                            cardSelected = []
-                        }
-
-                },
                 checkEndGame(){
                     
                     let element = document.querySelectorAll('.targetDisable')                 
@@ -102,10 +41,24 @@ export default {
                         return item.classList.contains('disable')
                     })
                      if (check) {
-                            this.statusGame.setStatusGame = 'END'
                             
+                            this.$emit('endGame')
+                            this.resetGame()
                      }
                     
+                 },
+                 resetGame(){
+                     console.log(true);
+                        let element = document.querySelectorAll('.targetDisable')                 
+                        
+                        element = Array.prototype.slice.call(element)
+                        
+                        element.forEach(item=>{
+                            item.classList.remove('disable');
+                            item.querySelector('.rotate').classList.remove('rotate')
+                            
+                        })
+                        this.$emit('reset')
                  }
                 }
                 
@@ -148,8 +101,5 @@ export default {
             }
         }
 }
-
-
-
 
 </style>
