@@ -39,13 +39,13 @@ import getCards from '../../controllers/methods/getCards'
 import ranking from '../../controllers/methods/ranking'
 import {getStorage, setStorage} from '../../controllers/methods/storage'
 import {initShowCards} from '../../controllers/methods/flipCard'
-import shuffleCards from '../../controllers/methods/shuffleCards'
+
 export default {
   name: 'Game',
   data () {
     return {
       userList:[],
-      cardList:getCards(),
+      cardList:'',
       statusGame:'',
       user: new Player('Player'),
       info:{}
@@ -60,6 +60,7 @@ export default {
   },
   methods:{
     initGame(){
+      this.cardList = getCards()
       this.statusGame = 'INIT'      
     },
     progressGame(){
