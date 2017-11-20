@@ -65,7 +65,7 @@ export default {
     },
     progressGame(){
       this.statusGame = 'PROGRESS'
-      initShowCards(shuffleCards(this.cardList))
+      initShowCards(this.cardList)
     },
     endGame(rnd, win){
       this.statusGame = 'END'
