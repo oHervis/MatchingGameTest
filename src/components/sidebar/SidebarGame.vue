@@ -31,7 +31,7 @@ export default {
 $borderBottom : 1px solid rgba(255,255,255,.1);
 aside {
     width: 20%;
-    overflow-y: scroll;
+    overflow-y: auto;
     background: #2c373c;
     height: 100%;
     display: flex;

@@ -162,6 +162,7 @@ export default {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        align-content: center;
     
         .gameCard{
             cursor: pointer;
